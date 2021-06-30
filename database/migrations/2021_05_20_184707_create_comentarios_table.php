@@ -21,6 +21,9 @@ class CreateComentariosTable extends Migration
             $table->integer('usuarioID');
             $table->timestamps();
 
+            $table->foreignId('peliculaid')->constrained();
+            $table->foreignId('usuarioID')->constrained()->onDelete('cascade');
+
         });
     }
 

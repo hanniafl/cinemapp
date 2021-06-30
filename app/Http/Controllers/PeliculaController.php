@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Model\Comentario;
 use App\Models\Pelicula;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -61,7 +63,8 @@ class PeliculaController extends Controller
      */
     public function show(Pelicula $pelicula)
     {
-        return view('pelicula.peliculaShow', compact('pelicula'));
+        $users = User::get();
+        return view('pelicula.peliculaShow', compact('pelicula', 'users'));
     }
 
     /**
@@ -104,5 +107,16 @@ class PeliculaController extends Controller
     {
         $pelicula->delete();
         return redirect()->route('peliculas.index');
+    }
+
+
+    /**
+     * Agregar un User a una pelicula
+     */
+    public function agregaUser(Request $request, Pelicula $pelicula)
+    {
+        $pelicula->users()->sync($request->usuarioID);
+
+        return redirect()->route('pelicula.peliculaShow', $pelicula);
     }
 }

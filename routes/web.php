@@ -58,3 +58,5 @@ Route::resource('users', UserController::class)->middleware('verified');
 Route::get('/get-all-comentario', [ComController::class, 'getAllComentarios']);
 
 Route::get('/download-pdf', [ComController::class, 'downloadPDF'])->name('download-pdf');
+
+Route::post('pelicula/agrega-user/{pelicula}', [PeliculaController::class, 'agregaUser'])->name('pelicula.agrega-user');

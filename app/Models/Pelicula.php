@@ -11,5 +11,8 @@ class Pelicula extends Model
     protected $fillable = ['titulo', 'director', 'valoracion', 'resena', 'fecha_visto', 'comentarios_id'];
     public $timestamps = false;
 
-
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
